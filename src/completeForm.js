@@ -6,47 +6,47 @@ function CompleteForm(props) {
 
     const [select, setSelect] = useState([
         {
-            value:"O'quv jarayoni bo'yicha",
+            value:"first",
             label: "O'quv jarayoni bo'yicha",
         },
         {
-            value:"Ilmiy jarayon bo'yicha",
+            value:"second",
             label: "Ilmiy jarayon bo'yicha",
         },
         {
-            value:"Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha",
+            value:"third",
             label: "Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha",
         },
         {
-            value:"Kadrlar tizimi bo'yicha",
+            value:"fourth",
             label: "Kadrlar tizimi bo'yicha",
         },
         {
-            value:"Innovatsion g'oya va takliflarga oid",
-            label: "Innovatsion g'oya va takliflarga oid",
-        },
-        {
-            value:"Ta'lim sifatini oshirish bo'yicha",
+            value:"fives",
             label: "Ta'lim sifatini oshirish bo'yicha",
         },
         {
-            value:"Sirtqi ta'lim  bo'yicha",
+            value:"six",
+            label: "Ta'lim sifatini oshirish bo'yicha",
+        },
+        {
+            value:"seven",
             label: "Sirtqi ta'lim  bo'yicha",
         },
         {
-            value:"Magistratura bo'yicha",
+            value:"eight",
             label: "Magistratura bo'yicha",
         },
         {
-            value:"Moddiy-texnik baza bilan ta'minlash bo'yicha",
+            value:"nine",
             label: "Moddiy-texnik baza bilan ta'minlash bo'yicha",
         },
         {
-            value:"Shaxsiy muammo va takliflar ",
+            value:"ten",
             label: "Shaxsiy muammo va takliflar ",
         },
         {
-            value:"Umumiy",
+            value:"eleven",
             label: "Umumiy",
         },
         ])
@@ -55,9 +55,13 @@ function CompleteForm(props) {
         setLabel(value.label)
     };
 
-    const [value, setValue] = useState("")
+    const [textarea, seTextarea] = useState("")
+    const [textarea2, seTextarea2] = useState("")
+    const [textarea3, seTextarea3] = useState("")
     const [label, setLabel] = useState("")
     const { TextArea } = Input;
+
+
 
     useEffect(()=>{
         AOS.init(
@@ -69,28 +73,39 @@ function CompleteForm(props) {
 
 
     return (
-       <>
-         <div>
-             <div data-aos="zoom-in-right">
-                 <label className="for_label" htmlFor=""> Taklif, tashabbus va mavjud muammolar yechimi taklif etilayotgan sohani tanlang</label>
-                 <div>
-                     <Select className="for_select mt-2" labelInValue style={{width: 120,}} onChange={handleChange} options={select}/>
+         <div className="container">
+             <div className="row">
+                 <div className="col-12">
+                     <div data-aos="zoom-in">
+                         <label className="for_label" htmlFor="">
+                             Taklif, tashabbus va mavjud muammolar yechimi taklif etilayotgan sohani tanlang
+                         </label>
+                         <div>
+                             <Select
+                                 className="for_select mt-2"
+                                 labelInValue style={{width: 120,}}
+                                 onChange={handleChange} options={select}
+                             />
+                         </div>
+                     </div>
+                     <div data-aos="zoom-in" className="mt-5">
+                         <label className="for_label" htmlFor="">Taklif va tashabbuslar</label>
+                         <div> <TextArea onChange={(e)=>seTextarea(e.target.value)} className="for_textarea" rows={4} /></div>
+                     </div>
+                     <div data-aos="zoom-in" className="mt-5">
+                         <label className="for_label" htmlFor="">Shikoyatlar uchun</label>
+                         <div> <TextArea onChange={(e)=>seTextarea2(e.target.value)} className="for_textarea" rows={4} /></div>
+                     </div>
+                     <div data-aos="zoom-in" className="mt-5">
+                         <label className="for_label" htmlFor="">Muammo va kamchiliklar</label>
+                         <div> <TextArea onChange={(e)=>seTextarea3(e.target.value)} className="for_textarea" rows={4} /></div>
+                     </div>
+                     <div data-aos="zoom-in"  className="big_button2">
+                         <button onClick={()=>{console.log(label, textarea3, textarea2, textarea)}} className="for_button">Jo'natish</button>
+                     </div>
                  </div>
              </div>
-             <div data-aos="zoom-in-right" className="mt-5">
-                 <label className="for_label" htmlFor="">Taklif va tashabbuslar</label>
-                 <div> <TextArea className="for_textarea" rows={4} /></div>
-             </div>
-             <div data-aos="zoom-in-right" className="mt-5">
-                 <label className="for_label" htmlFor="">Shikoyatlar uchun</label>
-                 <div> <TextArea className="for_textarea" rows={4} /></div>
-             </div>
-             <div data-aos="zoom-in-right" className="mt-5">
-                 <label className="for_label" htmlFor="">Muammo va kamchiliklar</label>
-                 <div> <TextArea className="for_textarea" rows={4} /></div>
-             </div>
          </div>
-       </>
     );
 }
 
