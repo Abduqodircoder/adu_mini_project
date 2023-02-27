@@ -49,3 +49,34 @@
     margin: 16px;
     background: rgba(255, 255, 255, 0.3);
 }
+
+.my-pagination {
+    width: 100%;
+    text-align: center;
+}
+.pagination {
+    margin-top: 3rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    gap: 5px;
+}
+.page-num {
+    background-color: #FCFDFE;
+    color: #92B8E4!important;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+}
+.page-num:hover{
+    background-color: #1677FF;
+    color: white;
+}
+.active {
+    background-color: #1677FF;
+    color: white;
+}
