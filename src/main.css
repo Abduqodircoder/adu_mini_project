@@ -3,6 +3,52 @@ body{
     padding: 0;
     background-color: #EEF1F8!important;
 }
+.col-12{
+    position: relative;
+}
+a{
+    text-decoration: none!important;
+}
+.ant-modal-footer{
+    display: none!important;
+}
+.img-for-logo{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.logo_main_page{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.in_menu_item{
+    display: flex;
+    align-items: center!important;
+    padding: 0 10px 0 0;
+}
+.anticon-menu-fold{
+    color: white!important;
+}
+.anticon-menu-unfold{
+    color: white!important;
+}
+.anticon-logout{
+    display: flex;
+    /*justify-content: end!important;*/
+    color: white!important;
+}
+.big_menu{
+    padding: 30px 0 0 0!important;
+}
+.for_menu_text{
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+.anticon{
+    font-size: 19px!important;
+}
 .for_min_width{
     display: none!important;
 }
@@ -17,13 +63,16 @@ body{
     color:#003f78 ;
 }
 .for_img{
-    margin-top: 70px;
+    /* margin-top: 40px; */
     align-items: center;
     display: flex;
     justify-content: end;
     /*border: 1px solid black;*/
     box-sizing: border-box;
     /*height: 100vh;*/
+}
+.for_main_img{
+    width: 500px;
 }
 .second_name{
     margin-top: 40px!important;
@@ -40,6 +89,14 @@ body{
 }
 .for_select{
     width: 470px!important;
+}
+
+.second_form_bottom_child{
+    position: absolute;
+    width: 70%;
+    margin-bottom:200px;
+    justify-content: center!important;
+    margin-left: 15%;
 }
 .ant-select-selector{
     height: 50px!important;
@@ -59,16 +116,22 @@ body{
 .for_textarea{
     width: 470px;
 }
+.for_label_bottom{
+    font-weight: bold;
+    color: #003f78!important;
+    font-size: 20px!important;
+}
 .for_textarea:hover{
     transform: scale(1.05);
 }
+.for_textarea_bottom:hover{
+    transform: scale(1.05);
+}
 .big_button{
-    width: 100%;
     display: flex;
-    justify-content: center;
 }
 .for_button{
-    margin: 50px 0;
+    margin-left: 15%;
     width: 400px;
     height: 50px;
     cursor: pointer;
@@ -148,7 +211,7 @@ body{
     .big_button{
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: center!important;
     }
     .for_button{
         margin: 50px 0;
@@ -188,6 +251,7 @@ body{
         box-sizing: border-box;
         /*height: 100vh;*/
     }
+    
     .for_main_img{
         width: 450px;
     }
@@ -225,13 +289,14 @@ body{
     .for_textarea{
         width: 420px;
     }
+    
     .for_textarea:hover{
         transform: scale(1.05);
     }
     .big_button{
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: center!important;
     }
     .for_button{
         margin: 50px 0;
@@ -287,6 +352,14 @@ body{
         font-size: 30px;
         font-weight: bold;
     }
+    .second_form_bottom_child{
+        /* position: relative; */
+        /* width: 70%; */
+        margin-bottom:200px;
+        justify-content: center!important;
+        margin-top: 70%;
+        margin-left: -76%;
+    }
     .for_select{
         width: 550px!important;
     }
@@ -314,13 +387,19 @@ body{
     .for_textarea{
         width: 550px;
     }
+    .for_textarea_bottom{
+        max-width: 550px!important; 
+    }
+    .ant-input{
+        width: 550px!important; 
+    }
     .for_textarea:hover{
         transform: scale(1.05);
     }
     .big_button{
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: center!important;
     }
     .for_button{
         margin: 50px 0;
@@ -376,6 +455,14 @@ body{
         text-align: center;
         font-size: 25px;
     }
+    .second_form_bottom_child{
+        /* position: relative; */
+        /* width: 70%; */
+        margin-bottom:200px;
+        justify-content: center!important;
+        margin-top: 90%;
+        margin-left: -96%;
+    }
     .third_name{
         text-align: center;
         font-size: 30px;
@@ -407,6 +494,12 @@ body{
     }
     .for_textarea{
         width: 520px;
+    }
+    .for_textarea_bottom{
+        max-width: 520px!important; 
+    }
+    .ant-input{
+        width: 520px!important; 
     }
     .for_textarea:hover{
         transform: scale(1.05);
@@ -470,6 +563,14 @@ body{
         text-align: center;
         font-size: 25px;
     }
+    .second_form_bottom_child{
+        /* position: relative; */
+        /* width: 70%; */
+        margin-bottom:200px;
+        justify-content: center!important;
+        margin-top: 500px;
+        margin-left: -370px;
+    }
     .third_name{
         text-align: center;
         font-size: 30px;
@@ -499,12 +600,20 @@ body{
         font-size: 20px;
         width: 380px;
     }
+
     .for_textarea{
         width: 380px;
+    }
+    .for_textarea_bottom{
+        max-width: 380px!important; 
+    }
+    .ant-input{
+        width: 380px!important; 
     }
     .for_textarea:hover{
         transform: scale(1.05);
     }
+
     .big_button{
         width: 100%;
         display: flex;
@@ -564,6 +673,14 @@ body{
         text-align: center;
         font-size: 25px;
     }
+    .second_form_bottom_child{
+        /* position: relative; */
+        /* width: 70%; */
+        margin-bottom:200px;
+        justify-content: center!important;
+        margin-top: 500px;
+        margin-left: -270px;
+    }
     .third_name{
         text-align: center;
         font-size: 30px;
@@ -595,6 +712,12 @@ body{
     }
     .for_textarea{
         width: 270px;
+    }
+    .for_textarea_bottom{
+        max-width: 270px!important; 
+    }
+    .ant-input{
+        width: 270px!important; 
     }
     .for_textarea:hover{
         transform: scale(1.05);
