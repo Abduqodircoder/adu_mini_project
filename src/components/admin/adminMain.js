@@ -14,6 +14,7 @@ import {BaseUrl} from "../../BaseUrl";
 import axios from "axios";
 import ReactPaginate from "react-paginate"
 import {ToastContainer, toast} from 'react-toastify';
+import Base from 'antd/es/typography/Base';
 const { Header, Sider, Content, Button, Input, Space, Table, } = Layout;
 
 
@@ -89,7 +90,7 @@ function AdminMain(props) {
         }).then(res=>{
             setDataId(id)
             setModalDataId(res.data.data)
-            // console.log(id)
+            console.log(res.data.data)
         }).catch(err=>{
             console.log(err)
         })
@@ -136,17 +137,22 @@ function AdminMain(props) {
         })
     }
 
-    const forFile = (id) =>{
-        axios.get(BaseUrl+"/api/taklifs/download/"+id).then(res=>{
-            console.log(res)
-            console.log(res.data)
-            if(res.status === 200){
-                <a href={BaseUrl+"/"+res.data} target="_blank"></a>
-            }
-        }).catch(err=>{
-            console.log(err)
-        })
-    }
+    // let [forResData, setForResData] = useState("")
+
+    // let forFileLink = <a href={BaseUrl+"/"+forResData}></a>
+
+    // const forFile = (id) =>{
+    //     axios.get(BaseUrl+"/api/taklifs/download/"+id).then(res=>{
+    //         console.log(res)
+    //         console.log(res.data)
+    //         if(res.status === 200){
+    //              setForResData(res.data)
+                 
+    //         }
+    //     }).catch(err=>{
+    //         console.log(err)
+    //     })
+    // }
 
     useEffect(()=>{
         getNewData()
@@ -189,13 +195,13 @@ function AdminMain(props) {
                             </div>
                         </Menu.Item>
                         {/* <button><a href="http://127.0.0.1:8000/taklifFile/download/31">swefwef</a></button> */}
-                        <Menu.Item onClick={()=>setTextMenu("done")} className="menu-main-item" key="2">
+                        <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="2">
                             <div className="in_menu_item">
                                 <FileDoneOutlined />
                                 <div className="for_menu_text">Qabul qilinganlar</div>
-                            </div>
+                            </div>  
                         </Menu.Item>
-                        <Menu.Item onClick={()=>setTextMenu("fail")} className="menu-main-item" key="3">
+                        <Menu.Item onClick={()=>{setTextMenu("fail");setItemOffset(0)}} className="menu-main-item" key="3">
                             <div className="in_menu_item">
                                 <FileExcelOutlined />
                                 <div className="for_menu_text">Rad etilganlar</div>
@@ -287,7 +293,7 @@ function AdminMain(props) {
                     </div>
                     <div className="d-flex">
                         <h6>File:</h6>
-                        <p style={{marginLeft:"8px", }}>{modalDataId.qushimchaFile ? <button onClick={()=>{forFile(modalDataId.id)}} style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button> : "Qoshimcha file biriktirilmagan"}</p>
+                        <p style={{marginLeft:"8px", }}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
                     </div>
                     <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
                         <button className="btn btn-danger" onClick={()=>{handleCancel(2); postStatus(2)}}>Rad etish</button>
@@ -322,7 +328,7 @@ function AdminMain(props) {
                     </div>
                     <div className="d-flex">
                         <h6>File:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.qushimchaFile ? <button><CloudDownloadOutlined /></button> : "Qoshimcha file biriktirilmagan"}</p>
+                        <p style={{marginLeft:"8px", }}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
                     </div>
                     <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
                         <button className="btn btn-danger" onClick={()=>{handleCancel(2); deleteData(modalDataId.id)}}>O'chirish</button>

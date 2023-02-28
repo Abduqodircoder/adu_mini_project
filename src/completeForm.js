@@ -69,16 +69,6 @@ function CompleteForm(props) {
     const [file, setFile] = useState([])
     const [text, setText] = useState(false)
 
-    // console.log(qushimcha_file)
-
-    // const allData = {
-    //     category,
-    //     muammo,
-    //     muammo_yechimi,
-    //     muammo_natija,
-    //     muallif,
-    //     muallif_info,
-    // }
 
     useEffect(() => {
         AOS.init(
@@ -163,7 +153,7 @@ function CompleteForm(props) {
             <div className="d-block">
                 <div className="second_form_bottom_child">
                     <div data-aos="zoom-in-right" className="mt-5">
-                        <label className="for_label_bottom" htmlFor="">Taklif, tashabbus va mavjud muammolar yechimidan
+                        <label className="for_label_bottom mt-5" htmlFor="">Taklif, tashabbus va mavjud muammolar yechimidan
                             kutilayotgan natija(lar)</label>
                         <div><TextArea value={muammo_natija} onChange={(e) => setMuammo_natija(e.target.value)} className="for_textarea_bottom" rows={4}/></div>
                     </div>
