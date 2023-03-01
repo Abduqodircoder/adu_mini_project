@@ -9,7 +9,7 @@
 .child_main{
     background-color: white;
     border-radius: 10px;
-    width: 40%;
+    width: 30%;
     min-height: 45vh;
     box-sizing: border-box;
     position: relative;
@@ -79,4 +79,70 @@
 .active {
     background-color: #1677FF;
     color: white;
+}
+
+@media (min-width:1140px) and (max-width:1440px){
+    .child_main{
+        background-color: white;
+        border-radius: 10px;
+        width: 40%;
+        min-height: 45vh;
+        box-sizing: border-box;
+        position: relative;
+    }
+}
+
+@media (min-width:992px) and (max-width:1140px){
+    .child_main{
+        background-color: white;
+        border-radius: 10px;
+        width: 50%;
+        min-height: 45vh;
+        box-sizing: border-box;
+        position: relative;
+    }
+}
+
+@media (min-width:768px) and (max-width:992px){
+    .child_main{
+        background-color: white;
+        border-radius: 10px;
+        width: 60%;
+        min-height: 45vh;
+        box-sizing: border-box;
+        position: relative;
+    }
+}
+
+@media (min-width:576px) and (max-width:768px){
+    .child_main{
+        background-color: white;
+        border-radius: 10px;
+        width: 70%;
+        min-height: 45vh;
+        box-sizing: border-box;
+        position: relative;
+    }
+}
+
+@media (min-width:412px) and (max-width:576px){
+    .child_main{
+        background-color: white;
+        border-radius: 10px;
+        width: 80%;
+        min-height: 45vh;
+        box-sizing: border-box;
+        position: relative;
+    }
+}
+
+@media (min-width:280px) and (max-width:412px){
+    .child_main{
+        background-color: white;
+        border-radius: 10px;
+        width: 90%;
+        min-height: 45vh;
+        box-sizing: border-box;
+        position: relative;
+    }
 }

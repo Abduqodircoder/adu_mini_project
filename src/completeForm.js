@@ -172,8 +172,8 @@ function CompleteForm(props) {
                             foto-video materiallar va h.k.) biriktirish (yuklash)</label>
                         <input onChange={(e) => setFile(e.target.files[0])} type="file" className="form-control ant-input"/>
                     </div>
-                    <div data-aos="fade-up" className="big_button">
-                        <button onClick={addDataUser} className="for_button">Jo'natish</button>
+                    <div data-aos="fade-up" className="big_button" style={{display:"flex", justifyContent:"center"}}>
+                        <button  onClick={addDataUser} className="for_button mb-5 mt-5">Jo'natish</button>
                     </div>
                 </div>
 

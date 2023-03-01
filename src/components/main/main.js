@@ -28,11 +28,13 @@ function Main(props) {
                     INTERAKTIV PORTAL
                 </div>
                 <div className="col-12">
+                <div className="for_big_width">
                     <div className="row"> 
-                        <div className="col-6 first_col-6"><CompleteForm/></div>
-                        <div className="col-6 second_col_6">
-                            <div className="for_img">
-                                <img className="for_main_img" data-aos="zoom-in-left" src="images/contact-us.svg" alt=""/>
+                            <div className="col-6  first_col-6"><CompleteForm/></div>
+                            <div className="col-6 second_col_6">
+                                <div className="for_img">
+                                    <img className="for_main_img" data-aos="zoom-in-left" src="images/contact-us.svg" alt=""/>
+                                </div>
                             </div>
                         </div>
                     </div>
