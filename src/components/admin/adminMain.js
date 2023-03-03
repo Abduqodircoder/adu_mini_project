@@ -215,11 +215,8 @@ function AdminMain(props) {
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header style={{padding: "0 30px 0 0", background: "dark", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                        {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: () => setCollapsed(!collapsed),
-                        })}
+                    <Header style={{padding: "0 30px 0 0", background: "dark", display:"flex", justifyContent:"end", alignItems:"center"}}>
+                        
                        <div style={{cursor:"pointer"}} onClick={logOut} className="log_out d-flex align-items-center">
                            <p style={{color:"white", margin:"10px 5px"}}>Chiqish</p>
                            <LogoutOutlined />

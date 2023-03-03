@@ -14,6 +14,19 @@
     box-sizing: border-box;
     position: relative;
 }
+/* .ant-layout-sider{
+    width: 500px!important;
+}
+.ant-layout-sider-collapsed{
+    opacity: 0!important;
+    width: 0!important;
+}
+.site-layout{
+    width: 100%!important;
+}
+.ant-layout-header{
+    width: 100%!important;
+} */
 .logo_company{
     box-sizing: border-box;
     display: flex;

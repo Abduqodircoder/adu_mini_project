@@ -68,7 +68,6 @@ function CompleteForm(props) {
     const [muallif_info, setMuallif_info] = useState("")
     const [file, setFile] = useState([])
     const [text, setText] = useState(false)
-    const [succes, setSucces] = useState(false)
 
 
     useEffect(() => {
@@ -84,14 +83,13 @@ function CompleteForm(props) {
     }, [text]);
 
     const notify = () => {
-        if (text === "" && succes === ""){} else if(text === "Ma'lumot yuklandi"){
+        if (text === ""){} else if(text === "Ma'lumot yuklandi"){
             toast.success(text)
         }
         else {
             toast.error(text)
         }
         setText("")
-        setSucces("")
     };
 
     const addDataUser = () => {
