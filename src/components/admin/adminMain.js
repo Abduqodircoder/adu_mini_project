@@ -48,7 +48,12 @@ function AdminMain(props) {
     }, [text]);
 
     const notify = () => {
-        if (text === ""){} else toast.error(text);
+        if (text === ""){} else if(text === "Taklif tasdiqlandi!"){
+            toast.success(text);
+        }
+        else{
+            toast.error(text);
+        }
         setText("")
     };
 
