@@ -8,60 +8,59 @@ import {BaseUrl} from "./BaseUrl";
 
 function CompleteForm(props) {
 
-    const [select, setSelect] = useState([
-        {
-            value: "O'quv jarayoni bo'yicha",
-            label: "O'quv jarayoni bo'yicha",
-        },
-        {
-            value: "Ilmiy jarayon bo'yicha",
-            label: "Ilmiy jarayon bo'yicha",
-        },
-        {
-            value: "Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha",
-            label: "Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha",
-        },
-        {
-            value: "Kadrlar tizimi bo'yicha",
-            label: "Kadrlar tizimi bo'yicha",
-        },
-        {
-            value: "Innovatsion g'oya va takliflarga oid",
-            label: "Innovatsion g'oya va takliflarga oid",
-        },
-        {
-            value: "Ta'lim sifatini oshirish bo'yicha",
-            label: "Ta'lim sifatini oshirish bo'yicha",
-        },
-        {
-            value: "Sirtqi ta'lim  bo'yicha",
-            label: "Sirtqi ta'lim  bo'yicha",
-        },
-        {
-            value: "Magistratura bo'yicha",
-            label: "Magistratura bo'yicha",
-        },
-        {
-            value: "Moddiy-texnik baza bilan ta'minlash bo'yicha",
-            label: "Moddiy-texnik baza bilan ta'minlash bo'yicha",
-        },
-        {
-            value: "Shaxsiy muammo va takliflar ",
-            label: "Shaxsiy muammo va takliflar ",
-        },
-        {
-            value: "Umumiy",
-            label: "Umumiy",
-        },
-    ])
+    // const [select, setSelect] = useState([
+    //     {
+    //         value: "O'quv jarayoni bo'yicha",
+    //         label: "O'quv jarayoni bo'yicha",
+    //     },
+    //     {
+    //         value: "Ilmiy jarayon bo'yicha",
+    //         label: "Ilmiy jarayon bo'yicha",
+    //     },
+    //     {
+    //         value: "Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha",
+    //         label: "Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha",
+    //     },
+    //     {
+    //         value: "Kadrlar tizimi bo'yicha",
+    //         label: "Kadrlar tizimi bo'yicha",
+    //     },
+    //     {
+    //         value: "Innovatsion g'oya va takliflarga oid",
+    //         label: "Innovatsion g'oya va takliflarga oid",
+    //     },
+    //     {
+    //         value: "Ta'lim sifatini oshirish bo'yicha",
+    //         label: "Ta'lim sifatini oshirish bo'yicha",
+    //     },
+    //     {
+    //         value: "Sirtqi ta'lim  bo'yicha",
+    //         label: "Sirtqi ta'lim  bo'yicha",
+    //     },
+    //     {
+    //         value: "Magistratura bo'yicha",
+    //         label: "Magistratura bo'yicha",
+    //     },
+    //     {
+    //         value: "Moddiy-texnik baza bilan ta'minlash bo'yicha",
+    //         label: "Moddiy-texnik baza bilan ta'minlash bo'yicha",
+    //     },
+    //     {
+    //         value: "Shaxsiy muammo va takliflar ",
+    //         label: "Shaxsiy muammo va takliflar ",
+    //     },
+    //     {
+    //         value: "Umumiy",
+    //         label: "Umumiy",
+    //     },
+    // ])
 
-    const handleChange = (value) => {
-        setCategory(value.label)
-    };
+    // const handleChange = (value) => {
+    //     setCategory(value.label)
+    // };
 
     const {TextArea} = Input;
     const [category, setCategory] = useState("")
-    const [muammo, setMuammo] = useState("")
     const [muammo_yechimi, setMuammo_yechimi] = useState("")
     const [muammo_natija, setMuammo_natija] = useState("")
     const [muallif, setMuallif] = useState("")
@@ -95,7 +94,6 @@ function CompleteForm(props) {
     const addDataUser = () => {
         if (
           category.trim().length > 0 &&
-          muammo.trim().length > 0 &&
           muammo_yechimi.trim().length > 0 &&
           muammo_natija.trim().length > 0 &&
           muallif.trim().length > 0 &&
@@ -103,7 +101,6 @@ function CompleteForm(props) {
         ) {
           const my_form_data = new FormData();
           my_form_data.append("category", category);
-          my_form_data.append("muammo", muammo);
           my_form_data.append("muammo_natija", muammo_natija);
           my_form_data.append("muammo_yechimi", muammo_yechimi);
           my_form_data.append("muallif", muallif);
@@ -116,7 +113,6 @@ function CompleteForm(props) {
                 console.log(res.data);
                 setText(res.data.message);
                 setCategory("");
-                setMuammo("");
                 setMuammo_yechimi("");
                 setMuammo_natija("");
                 setMuallif("");
@@ -138,45 +134,36 @@ function CompleteForm(props) {
                 <ToastContainer />
                 {/*{JSON.stringify({muammo, muammo_yechimi, muammo_natija, muallif, muallif_info})}*/}
                 <div data-aos="zoom-in-right">
-                    <label className="for_label" htmlFor=""> Taklif, tashabbus va mavjud muammolar yechimi taklif
-                        etilayotgan sohani tanlang</label>
+                    <label className="for_label" htmlFor="">Yuborayotgan Taklif, tashabbus yoki mavjud muammoyingiz qaysi sohaga tegishli?</label>
                     <div>
-                        <Select className="for_select mt-2" labelInValue style={{width: 120,}} onChange={handleChange}
-                                options={select}/>
+                        <input placeholder="(Namuna) Karrupsiya, O'quv ishlari, Moddiy-texnik..." value={category} style={{boxShadow:"none"}} className="form-control" type="text" onChange={(e)=>{setCategory(e.target.value)}}/>
                     </div>
                 </div>
                 <div data-aos="zoom-in-right" className="mt-5">
-                    <label className="for_label" htmlFor="">Mavjud muammolar</label>
-                    <div><TextArea value={muammo} onChange={(e) => setMuammo(e.target.value)} className="for_textarea" rows={4}/></div>
-                </div>
-                <div data-aos="zoom-in-right" className="mt-5">
-                    <label className="for_label" htmlFor="">Taklif, tashabbus va mavjud muammolar yechimiga oid
-                        tavsiya(lar)</label>
-                    <div><TextArea value={muammo_yechimi} onChange={(e) => setMuammo_yechimi(e.target.value)} className="for_textarea" rows={4}/></div>
+                    <label className="for_label" htmlFor="">Taklif, tashabbus yoki mavjud muammoyingizni izohlab yozing</label>
+                    <div><TextArea  value={muammo_yechimi} onChange={(e) => setMuammo_yechimi(e.target.value)} className="for_textarea" rows={4}/></div>
+                    <div data-aos="zoom-in-right" className="mt-5">
+                        <label className="for_label_bottom" htmlFor="">Agar Taklif, tashabbus yoki mavjud muammoyingiz fayl holatida bo'lsa, (bu yerga) yuklang</label>
+                        <input onChange={(e) => setFile(e.target.files[0])} type="file" className="form-control ant-input mt-2"/>
+                    </div>
+                    <div data-aos="zoom-in-right" className="mt-5">
+                        <label className="for_label mt-5" htmlFor="">Taklif, tashabbus yoki mavjud muammoyingiz yechimidan
+                            kutilayotgan natija(lar)</label>
+                        <div><TextArea value={muammo_natija} onChange={(e) => setMuammo_natija(e.target.value)} className="for_textarea" rows={4}/></div>
+                    </div>
                 </div>
             </div>
             <div className="d-block">
                 <div className="second_form_bottom_child">
                     <div data-aos="zoom-in-right" className="mt-5">
-                        <label className="for_label_bottom mt-5" htmlFor="">Taklif, tashabbus va mavjud muammolar yechimidan
-                            kutilayotgan natija(lar)</label>
-                        <div><TextArea value={muammo_natija} onChange={(e) => setMuammo_natija(e.target.value)} className="for_textarea_bottom" rows={4}/></div>
+                        <label className="for_label_bottom" htmlFor="">Ism va familiyangiz</label>
+                        <div><input style={{boxShadow:"none"}} className="form-control ant-input" type="text" value={muallif} onChange={(e) => setMuallif(e.target.value)} /></div>
                     </div>
                     <div data-aos="zoom-in-right" className="mt-5">
-                        <label className="for_label_bottom" htmlFor="">Taklif, tashabbus va mavjud muammolar yechimiga
-                            oid tavsiya muallifi</label>
-                        <div><TextArea value={muallif} onChange={(e) => setMuallif(e.target.value)} className="for_textarea_bottom" rows={4}/></div>
+                        <label className="for_label_bottom" htmlFor="">Muallif rekvizitlari (<i>telefon raqam va manzil</i>)</label>
+                        <div><input style={{boxShadow:"none"}} className="form-control ant-input" type="text" value={muallif_info} onChange={(e) => setMuallif_info(e.target.value)}/></div>
                     </div>
-                    <div data-aos="zoom-in-right" className="mt-5">
-                        <label className="for_label_bottom" htmlFor="">Muallif rekvizitlari (tel. raqami, manzili va
-                            h.k.)</label>
-                        <div><TextArea value={muallif_info} onChange={(e) => setMuallif_info(e.target.value)} className="for_textarea_bottom" rows={4}/></div>
-                    </div>
-                    <div data-aos="zoom-in-right" className="mt-5">
-                        <label className="for_label_bottom" htmlFor="">Qoʻshimcha materiallar (elektron fayllar,
-                            foto-video materiallar va h.k.) biriktirish (yuklash)</label>
-                        <input onChange={(e) => setFile(e.target.files[0])} type="file" className="form-control ant-input"/>
-                    </div>
+                   
                     <div data-aos="fade-up" className="big_button" style={{display:"flex", justifyContent:"center"}}>
                         <button  onClick={addDataUser} className="for_button mb-5 mt-5">Jo'natish</button>
                     </div>
