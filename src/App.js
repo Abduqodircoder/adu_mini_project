@@ -6,8 +6,8 @@ import AOS from "aos";
 import "aos/dist/aos.css"
 import Main from "./components/main/main";
 import AdminAuth from "./components/admin/adminAuth"
-import AdminMAin from "./components/admin/adminMain"
 import AdminMain from "./components/admin/adminMain";
+import SuperAdminMAin from "./components/admin/superAdminMain";
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/main_admin_sv_auth" element={<AdminAuth/>}/>
         <Route path="/main_admin_sv_main" element={<AdminMain/>}/>
+        <Route path="/main_admin_sv_main_super" element={<SuperAdminMAin/>}/>
       </Routes>
   );
 }

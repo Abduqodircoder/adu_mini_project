@@ -7,26 +7,33 @@ import {
     LogoutOutlined,
     CloudDownloadOutlined
 } from '@ant-design/icons';
+import { Layout, Menu, theme,  Button, Drawer, Space } from 'antd';
 import React, {useEffect, useRef, useState} from 'react';
-import { Layout, Menu, theme, Modal } from 'antd';
 import {Link, useNavigate} from "react-router-dom";
 import {BaseUrl} from "../../BaseUrl";
 import axios from "axios";
 import ReactPaginate from "react-paginate"
 import {ToastContainer, toast} from 'react-toastify';
 import Base from 'antd/es/typography/Base';
-const { Header, Sider, Content, Button, Input, Space, Table, } = Layout;
+const { Header, Sider, Content, } = Layout;
 
 
 
-function AdminMain(props) {
+function SuperAdminMAin(props) {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = (id) => {
-            setIsModalOpen(true);
+    const [open, setOpen] = useState(false);
+    const [size, setSize] = useState();
+    const showDefaultDrawer = () => {
+      setSize('default');
+      setOpen(true);
     };
-
-
+    const showLargeDrawer = () => {
+      setSize('large');
+      setOpen(true);
+    };
+    const onClose = () => {
+      setOpen(false);
+    };
     const navigate = useNavigate()
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -43,6 +50,8 @@ function AdminMain(props) {
     // console.log(dataStatus.typeof)
 
 
+   
+
     useEffect(() => {
         notify();
     }, [text]);
@@ -57,10 +66,6 @@ function AdminMain(props) {
         setText("")
     };
 
-    const handleCancel = (status) => {
-        setIsModalOpen(false);
-        // setStatus(status)
-    };
 
     // console.log(dataStatus)
 
@@ -133,7 +138,7 @@ function AdminMain(props) {
         }).then(res=>{
             console.log(res)
             if(res.status === 201){
-                getNewData()  
+                getNewData()
                 console.log(res.data.result)
                 setText(res.data.result)
             }
@@ -142,22 +147,6 @@ function AdminMain(props) {
         })
     }
 
-    // let [forResData, setForResData] = useState("")
-
-    // let forFileLink = <a href={BaseUrl+"/"+forResData}></a>
-
-    // const forFile = (id) =>{
-    //     axios.get(BaseUrl+"/api/taklifs/download/"+id).then(res=>{
-    //         console.log(res)
-    //         console.log(res.data)
-    //         if(res.status === 200){
-    //              setForResData(res.data)
-                 
-    //         }
-    //     }).catch(err=>{
-    //         console.log(err)
-    //     })
-    // }
 
     useEffect(()=>{
         getNewData()
@@ -182,16 +171,21 @@ function AdminMain(props) {
         const newOffset = (event.selected * itemsPerPage) % data.length;
         setItemOffset(newOffset);
     };
+{/* <button className="btn btn-primary" onClick={()=>{handleCancel(2); postStatus(2)}}>Ko'rib chiqilganlar</button>
+                        <button className="btn btn-secondary" onClick={()=>{handleCancel(1); postStatus(1)}}>Bajarilganlar</button> */}
 
+                        // <button className="btn btn-danger" onClick={()=>{handleCancel(2); deleteData(modalDataId.id)}}>O'chirish</button>
 
     return (
         <>
             <Layout>
             <ToastContainer/>
+           
                 <Sider trigger={null} collapsible collapsed={collapsed}>
                     <div className="logo_main_page">
                         <img className="img-for-logo" src="https://yt3.ggpht.com/a/AATXAJxvHU_V9ATaE-t_2rnF1-O8Kn6CLe1wAt_--w=s900-c-k-c0xffffffff-no-rj-mo" alt=""/>
                     </div>
+                    <h1>super admin</h1>
                     <Menu className="big_menu" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="1">
                             <div className="in_menu_item">
@@ -237,14 +231,12 @@ function AdminMain(props) {
                             <tbody>
                             {
                                currentItems && currentItems.map((item, index)=>(
-                                    <tr onClick={()=>{showModal(); getOneData(item.id)}} key={index}>
+                                    <tr onClick={()=>{showLargeDrawer(); getOneData(item.id)}} key={index}>
                                         <th scope="row">{item.id}</th>
                                         <td>{item.category}</td>
                                         <td>{item.muammo}</td>
                                         <td>{item.muallif}</td>
-                                        <td>
-                                         <p style={{marginLeft:"8px", }}>{item.qushimchaFile ? <a href={BaseUrl+"/storage/"+item.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
-                                        </td>
+                                        <td><p style={{marginLeft:"8px", }}>{item.qushimchaFile ? <a href={BaseUrl+"/storage/"+item.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p></td>
                                     </tr>
                                 ))
                             }
@@ -268,79 +260,61 @@ function AdminMain(props) {
             </div>
                     </Content>
                 </Layout>
-                
-                {
-                    modalDataId.status === 0 ? 
-                    <Modal title="Barcha ma'lumotlar" open={isModalOpen} onCancel={handleCancel}>
-                    <div className="d-flex">
-                        <h6>Kategoriya: </h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.category}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Muammo:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammo}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Kutilayotgan natija:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoNatija}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Kutilayotgan yechim:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoYechimi}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Muallif:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muallif}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Muallif ma'lumoti:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muallifInfo}</p>
-                    </div>
-                    
-                    <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
-                    <button className="btn btn-primary" onClick={()=>{handleCancel(2); postStatus(2)}}>Ko'rib chiqilganlar</button>
-                        <button className="btn btn-success" onClick={()=>{handleCancel(1); postStatus(1)}}>Bajarilganlar</button>
-                    </div>
-                </Modal> 
-                :
-                <Modal title="Barcha ma'lumotlar" open={isModalOpen} onCancel={handleCancel}>
-                    <div className="d-flex">
-                        <h6>Kategoriya: </h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.category}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Muammo:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammo}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Kutilayotgan natija:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoNatija}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Kutilayotgan yechim:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoYechimi}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Muallif:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muallif}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Muallif ma'lumoti:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muallifInfo}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>File:</h6>
-                        <p style={{marginLeft:"8px", }}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
-                    </div>
-                    <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
-                        <button className="btn btn-danger" onClick={()=>{handleCancel(2); deleteData(modalDataId.id)}}>O'chirish</button>
-                    </div>
-                </Modal>
-                }
-                
             </Layout>
+            
+      <Drawer
+        title={`To'liq Ma'lumotllar`}
+        placement="right"
+        size={size}
+        onClose={onClose}
+        open={open}
+        // extra={
+        //     <Space>
+        //       <Button onClick={onClose}>Cancel</Button>
+        //       <Button type="primary" onClick={onClose}>
+        //         OK
+        //       </Button>
+        //     </Space>
+        //   }
+       
+      >
+        <div className="d-flex">
+                        <h5>Kategoriya: </h5>
+                        <p style={{marginLeft:"8px", borderBottom:"1px solid black",fontSize:"18px"}}>{modalDataId.category}</p>
+                    </div>
+                    <div className="d-flex">
+                        <h5>Muammo:</h5>
+                        <p style={{marginLeft:"8px", borderBottom:"1px solid black",fontSize:"18px"}}>{modalDataId.muammo}</p>
+                    </div>
+                    <div className="d-flex">
+                        <h5>Kutilayotgan natija:</h5>
+                        <p style={{marginLeft:"8px", borderBottom:"1px solid black",fontSize:"18px"}}>{modalDataId.muammoNatija}</p>
+                    </div>
+                    <div className="d-flex">
+                        <h5>Muallif:</h5>
+                        <p style={{marginLeft:"8px", borderBottom:"1px solid black",fontSize:"18px"}}>{modalDataId.muallif}</p>
+                    </div>
+                    <div className="d-flex">
+                        <h5>Muallif ma'lumoti:</h5>
+                        <p style={{marginLeft:"8px", borderBottom:"1px solid black",fontSize:"18px"}}>{modalDataId.muallifInfo}</p>
+                    </div>
+                    <div className="d-flex">
+                        <h5>File:</h5>
+                        <p style={{marginLeft:"8px", fontSize:"18px"}}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
+                    </div>
+                    <div className="d-flex" style={{justifyContent:"center"}}>
+                        <h5>Taklifni biriktirish</h5>
+                    </div>
+                    <div className="d-flex" style={{justifyContent:"center", width:"100%"}}>
+                        <div  style={{width:"80%"}}><input style={{boxShadow:"none"}} className="form-control" type="text"/></div>
+                        <div style={{width:"15%"}}></div>
+                    </div>
+                    <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
+                        <button className="btn btn-danger" onClick={()=>{ deleteData(modalDataId.id)}}>O'chirish</button>
+                    </div>
+      </Drawer>
         </>
     );
 }
 
-export default AdminMain;
+export default SuperAdminMAin;

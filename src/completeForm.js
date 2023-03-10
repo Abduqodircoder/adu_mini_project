@@ -61,7 +61,7 @@ function CompleteForm(props) {
 
     const {TextArea} = Input;
     const [category, setCategory] = useState("")
-    const [muammo_yechimi, setMuammo_yechimi] = useState("")
+    const [muammo, setMuammo] = useState("")
     const [muammo_natija, setMuammo_natija] = useState("")
     const [muallif, setMuallif] = useState("")
     const [muallif_info, setMuallif_info] = useState("")
@@ -94,15 +94,15 @@ function CompleteForm(props) {
     const addDataUser = () => {
         if (
           category.trim().length > 0 &&
-          muammo_yechimi.trim().length > 0 &&
+          muammo.trim().length > 0 &&
           muammo_natija.trim().length > 0 &&
           muallif.trim().length > 0 &&
           muallif_info.trim().length > 0
         ) {
           const my_form_data = new FormData();
           my_form_data.append("category", category);
+          my_form_data.append("muammo", muammo);
           my_form_data.append("muammo_natija", muammo_natija);
-          my_form_data.append("muammo_yechimi", muammo_yechimi);
           my_form_data.append("muallif", muallif);
           my_form_data.append("muallif_info", muallif_info);
           my_form_data.append("qushimcha_file", file);
@@ -113,7 +113,7 @@ function CompleteForm(props) {
                 console.log(res.data);
                 setText(res.data.message);
                 setCategory("");
-                setMuammo_yechimi("");
+                setMuammo("");
                 setMuammo_natija("");
                 setMuallif("");
                 setMuallif_info("");
@@ -121,6 +121,10 @@ function CompleteForm(props) {
             })
             .catch((err) => {
               console.log(err);
+              if(err.response.status === 500){
+                setText(err.response.status + err.response.statusText)
+                // console.log(my_form_data.get("qushimcha_file"))
+              }
             });
         } else {
           setText("Iltimos fo'rmani to'liq to'ldiring");
@@ -141,7 +145,7 @@ function CompleteForm(props) {
                 </div>
                 <div data-aos="zoom-in-right" className="mt-5">
                     <label className="for_label" htmlFor="">Taklif, tashabbus yoki mavjud muammoyingizni izohlab yozing</label>
-                    <div><TextArea  value={muammo_yechimi} onChange={(e) => setMuammo_yechimi(e.target.value)} className="for_textarea" rows={4}/></div>
+                    <div><TextArea  value={muammo} onChange={(e) => setMuammo(e.target.value)} className="for_textarea" rows={4}/></div>
                     <div data-aos="zoom-in-right" className="mt-5">
                         <label className="for_label_bottom" htmlFor="">Agar Taklif, tashabbus yoki mavjud muammoyingiz fayl holatida bo'lsa, (bu yerga) yuklang</label>
                         <input onChange={(e) => setFile(e.target.files[0])} type="file" className="form-control ant-input mt-2"/>
