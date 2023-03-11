@@ -99,15 +99,15 @@ function CompleteForm(props) {
           muallif.trim().length > 0 &&
           muallif_info.trim().length > 0
         ) {
-          const my_form_data = new FormData();
-          my_form_data.append("category", category);
-          my_form_data.append("muammo", muammo);
-          my_form_data.append("muammo_natija", muammo_natija);
-          my_form_data.append("muallif", muallif);
-          my_form_data.append("muallif_info", muallif_info);
-          my_form_data.append("qushimcha_file", file);
+          const taklifs = new FormData();
+          taklifs.append("category", category);
+          taklifs.append("muammo", muammo);
+          taklifs.append("muammo_natija", muammo_natija);
+          taklifs.append("muallif", muallif);
+          taklifs.append("muallif_info", muallif_info);
+          taklifs.append("qushimcha_file", file);
           axios
-            .post(BaseUrl + "/api/taklifs", my_form_data)
+            .post(BaseUrl + "/api/taklifs", taklifs)
             .then((res) => {
               if (res.status === 201) {
                 console.log(res.data);
@@ -123,7 +123,7 @@ function CompleteForm(props) {
               console.log(err);
               if(err.response.status === 500){
                 setText(err.response.status + err.response.statusText)
-                // console.log(my_form_data.get("qushimcha_file"))
+                // console.log(taklifs.get("qushimcha_file"))
               }
             });
         } else {
@@ -145,7 +145,7 @@ function CompleteForm(props) {
                 </div>
                 <div data-aos="zoom-in-right" className="mt-5">
                     <label className="for_label" htmlFor="">Taklif, tashabbus yoki mavjud muammoyingizni izohlab yozing</label>
-                    <div><TextArea  value={muammo} onChange={(e) => setMuammo(e.target.value)} className="for_textarea" rows={4}/></div>
+                    <div><TextArea  value={muammo} onChange={(e) => setMuammo(e.target.value)} className="for_textarea form-control" rows={4}/></div>
                     <div data-aos="zoom-in-right" className="mt-5">
                         <label className="for_label_bottom" htmlFor="">Agar Taklif, tashabbus yoki mavjud muammoyingiz fayl holatida bo'lsa, (bu yerga) yuklang</label>
                         <input onChange={(e) => setFile(e.target.files[0])} type="file" className="form-control ant-input mt-2"/>
@@ -153,7 +153,7 @@ function CompleteForm(props) {
                     <div data-aos="zoom-in-right" className="mt-5">
                         <label className="for_label mt-5" htmlFor="">Taklif, tashabbus yoki mavjud muammoyingiz yechimidan
                             kutilayotgan natija(lar)</label>
-                        <div><TextArea value={muammo_natija} onChange={(e) => setMuammo_natija(e.target.value)} className="for_textarea" rows={4}/></div>
+                        <div><TextArea value={muammo_natija} onChange={(e) => setMuammo_natija(e.target.value)} className="for_textarea form-control" rows={4}/></div>
                     </div>
                 </div>
             </div>
@@ -161,11 +161,11 @@ function CompleteForm(props) {
                 <div className="second_form_bottom_child">
                     <div data-aos="zoom-in-right" className="mt-5">
                         <label className="for_label_bottom" htmlFor="">Ism va familiyangiz</label>
-                        <div><input style={{boxShadow:"none"}} className="form-control ant-input" type="text" value={muallif} onChange={(e) => setMuallif(e.target.value)} /></div>
+                        <div><input style={{boxShadow:"none"}} className="form-control " type="text" value={muallif} onChange={(e) => setMuallif(e.target.value)} /></div>
                     </div>
                     <div data-aos="zoom-in-right" className="mt-5">
                         <label className="for_label_bottom" htmlFor="">Muallif rekvizitlari (<i>telefon raqam va manzil</i>)</label>
-                        <div><input style={{boxShadow:"none"}} className="form-control ant-input" type="text" value={muallif_info} onChange={(e) => setMuallif_info(e.target.value)}/></div>
+                        <div><input style={{boxShadow:"none"}} className="form-control " type="text" value={muallif_info} onChange={(e) => setMuallif_info(e.target.value)}/></div>
                     </div>
                    
                     <div data-aos="fade-up" className="big_button" style={{display:"flex", justifyContent:"center"}}>

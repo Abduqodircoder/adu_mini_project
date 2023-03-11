@@ -1,7 +1,7 @@
 import {
-    MenuFoldOutlined,
+    BarChartOutlined,
     FormOutlined,
-    FileExcelOutlined,
+    FileTextOutlined,
     FileDoneOutlined,
     HomeOutlined,
     LogoutOutlined,
@@ -9,12 +9,13 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, theme,  Button, Drawer, Space } from 'antd';
 import React, {useEffect, useRef, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {Link, Routes, Route, useNavigate} from "react-router-dom";
 import {BaseUrl} from "../../BaseUrl";
 import axios from "axios";
 import ReactPaginate from "react-paginate"
 import {ToastContainer, toast} from 'react-toastify';
 import Base from 'antd/es/typography/Base';
+import ChartS from './chartS';
 const { Header, Sider, Content, } = Layout;
 
 
@@ -139,8 +140,8 @@ function SuperAdminMAin(props) {
             console.log(res)
             if(res.status === 201){
                 getNewData()
-                console.log(res.data.result)
-                setText(res.data.result)
+                console.log(res.data.message)
+                setText(res.data.message)
             }
         }).catch(err=>{
             console.log(err)
@@ -180,32 +181,46 @@ function SuperAdminMAin(props) {
         <>
             <Layout>
             <ToastContainer/>
-           
                 <Sider trigger={null} collapsible collapsed={collapsed}>
                     <div className="logo_main_page">
                         <img className="img-for-logo" src="https://yt3.ggpht.com/a/AATXAJxvHU_V9ATaE-t_2rnF1-O8Kn6CLe1wAt_--w=s900-c-k-c0xffffffff-no-rj-mo" alt=""/>
                     </div>
-                    <h1>super admin</h1>
                     <Menu className="big_menu" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="1">
-                            <div className="in_menu_item">
-                                <HomeOutlined/>
-                                <div className="for_menu_text">Yangi arizlar</div>
-                            </div>
+                            <Link to="/main_admin_sv_main_super/">
+                                <div className="in_menu_item">
+                                <BarChartOutlined />
+                                    <div className="for_menu_text">Statistika</div>
+                                </div>
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="2">
+                            <Link to="/main_admin_sv_main_super/all/data">
+                                <div className="in_menu_item">
+                                <FileTextOutlined />
+                                    <div className="for_menu_text">Yangi arizlar</div>
+                                </div>
+                            </Link>
                         </Menu.Item>
                         {/* <button><a href="http://127.0.0.1:8000/taklifFile/download/31">swefwef</a></button> */}
                        
-                        <Menu.Item onClick={()=>{setTextMenu("fail");setItemOffset(0)}} className="menu-main-item" key="2">
-                            <div className="in_menu_item">
-                            <FormOutlined />
-                                <div className="for_menu_text">Ko'rib chiqilganlar</div>
-                            </div>
+                        <Menu.Item onClick={()=>{setTextMenu("fail");setItemOffset(0)}} className="menu-main-item" key="3">
+                            
+                            <Link to="/main_admin_sv_main_super/all/data">
+                                <div className="in_menu_item">
+                                <FormOutlined />
+                                    <div className="for_menu_text">Ko'rib chiqilganlar</div>
+                                </div>
+                            </Link>
+                            
                         </Menu.Item>
-                        <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="3">
-                            <div className="in_menu_item">
+                        <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="4">
+                        <Link to="/main_admin_sv_main_super/all/data">
+                        <div className="in_menu_item">
                                 <FileDoneOutlined />
                                 <div className="for_menu_text">Bajarilgan murojaatlar</div>
                             </div>  
+                        </Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -218,7 +233,11 @@ function SuperAdminMAin(props) {
                        </div>
                     </Header>
                     <Content style={{margin: '24px 16px', padding: 24, minHeight: "81.5vh", background: colorBgContainer,}}>
-                        <table className="table table-hover">
+                       {
+                        <Routes>
+                            <Route path="/" element={<ChartS/>}/>
+                            <Route path="/all/data" element={<>
+                                <table className="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">TR</th>
@@ -243,21 +262,24 @@ function SuperAdminMAin(props) {
                             </tbody>
                         </table>
                         <div className="my-pagination">
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=" >"
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={2}
-                    pageCount={pageCount}
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    containerClassName="pagination"
-                    pageLinkClassName="page-num"
-                    previousLinkClassName="page-num"
-                    nextLinkClassName="page-num"
-                    activeLinkClassName="active"
-                />
-            </div>
+                            <ReactPaginate
+                                breakLabel="..."
+                                nextLabel=" >"
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={2}
+                                pageCount={pageCount}
+                                previousLabel="<"
+                                renderOnZeroPageCount={null}
+                                containerClassName="pagination"
+                                pageLinkClassName="page-num"
+                                previousLinkClassName="page-num"
+                                nextLinkClassName="page-num"
+                                activeLinkClassName="active"
+                            />
+                        </div>
+                            </>}/>
+                        </Routes>
+                       }
                     </Content>
                 </Layout>
             </Layout>
@@ -303,15 +325,20 @@ function SuperAdminMAin(props) {
                         <p style={{marginLeft:"8px", fontSize:"18px"}}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
                     </div>
                     <div className="d-flex" style={{justifyContent:"center"}}>
-                        <h5>Taklifni biriktirish</h5>
+                        <h5>Murojaatni biriktirish</h5>
                     </div>
-                    <div className="d-flex" style={{justifyContent:"center", width:"100%"}}>
-                        <div  style={{width:"80%"}}><input style={{boxShadow:"none"}} className="form-control" type="text"/></div>
-                        <div style={{width:"15%"}}></div>
-                    </div>
-                    <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
+                    <div className="d-flex" style={{justifyContent:"space-between", width:"100%"}}>
+                        <div  style={{width:"70%"}}>
+                            <select style={{boxShadow:"none"}} className="form-select">
+                                <option value="moliya">Moliya</option>
+                                <option value="moliya">O'quv ishlari</option>
+                            </select>
+                        </div>
+                        <div style={{width:"15%"}}><button className="btn btn-primary">Biriktirish</button></div>
+                        
                         <button className="btn btn-danger" onClick={()=>{ deleteData(modalDataId.id)}}>O'chirish</button>
                     </div>
+                    
       </Drawer>
         </>
     );

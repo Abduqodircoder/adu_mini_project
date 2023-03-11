@@ -16,9 +16,9 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<Main/>}/>
-        <Route path="/main_admin_sv_auth" element={<AdminAuth/>}/>
-        <Route path="/main_admin_sv_main" element={<AdminMain/>}/>
-        <Route path="/main_admin_sv_main_super" element={<SuperAdminMAin/>}/>
+        <Route path="/main_admin_sv_auth/*" element={<AdminAuth/>}/>
+        <Route path="/main_admin_sv_main/*" element={<AdminMain/>}/>
+        <Route path="/main_admin_sv_main_super/*" element={<SuperAdminMAin/>}/>
       </Routes>
   );
 }

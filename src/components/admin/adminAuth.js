@@ -41,8 +41,8 @@ function AdminAuth(props) {
                    }
                }
            }).catch(err=>{
-               console.log(err.response.data.message[0])
-               setText(err.response.data.message[0])
+               console.log(err.response.data.message)
+               setText(err.response.data.message)
                if(err.res.status === 500){
                 setText(err.res.status, err.res.statusText)
                }

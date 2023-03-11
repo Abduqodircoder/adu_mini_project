@@ -285,10 +285,6 @@ function AdminMain(props) {
                         <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoNatija}</p>
                     </div>
                     <div className="d-flex">
-                        <h6>Kutilayotgan yechim:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoYechimi}</p>
-                    </div>
-                    <div className="d-flex">
                         <h6>Muallif:</h6>
                         <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muallif}</p>
                     </div>
@@ -315,10 +311,6 @@ function AdminMain(props) {
                     <div className="d-flex">
                         <h6>Kutilayotgan natija:</h6>
                         <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoNatija}</p>
-                    </div>
-                    <div className="d-flex">
-                        <h6>Kutilayotgan yechim:</h6>
-                        <p style={{marginLeft:"8px", borderBottom:"1px solid black"}}>{modalDataId.muammoYechimi}</p>
                     </div>
                     <div className="d-flex">
                         <h6>Muallif:</h6>

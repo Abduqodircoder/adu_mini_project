@@ -63,7 +63,7 @@ a{
     color:#003f78 ;
 }
 .for_img{
-    /* margin-top: 40px; */
+    margin-top: 90px;
     align-items: center;
     display: flex;
     justify-content: end;
@@ -173,11 +173,11 @@ a{
 }
 
 @media (min-width:1140px) and (max-width:1440px){
-    .ant-select{
+    /* .ant-select{
         width: 450px!important;
-    }
+    } */
     .for_img{
-        /* margin-top: 40px; */
+        margin-top: -10px;
         align-items: center;
         display: flex;
         justify-content: end;
@@ -197,16 +197,16 @@ a{
         width: 500px;
     }
     .for_textarea{
-        width: 450px!important;
+        /* width: 450px!important; */
     }
 }
 
 @media (min-width:992px) and (max-width:1140px){
     .ant-select{
-        width: 450px!important;
+        /* width: 450px!important; */
     }
     .for_img{
-        /* margin-top: 40px; */
+        margin-top: -20px;
         align-items: center;
         display: flex;
         justify-content: end;
@@ -222,19 +222,19 @@ a{
     .for_label{
         font-weight: bold;
         color: #003f78!important;
-        font-size: 20px;
+        font-size: 18px;
         width: 450px;
     }
     .for_textarea{
-        width: 450px!important;
+        /* width: 450px!important; */
     }
 }
 @media (min-width:768px) and (max-width:992px){
     .ant-select{
-        width: 330px!important;
+        /* width: 330px!important; */
     }
     .for_img{
-        /* margin-top: 40px; */
+        margin-top: -20px;
         align-items: center;
         display: flex;
         justify-content: end;
@@ -250,8 +250,11 @@ a{
     .for_label{
         font-weight: bold;
         color: #003f78!important;
-        font-size: 20px;
+        font-size: 17px;
         width: 300px;
+    }
+    .for_label_bottom{
+        font-size: 17px!important;
     }
     .for_textarea{
         width: 380px!important;
@@ -271,7 +274,7 @@ a{
     } */
     .ant-select{
         margin-top: 30px;
-        width: 500px!important;
+        /* width: 500px!important; */
     }
     .for_img{
         /* margin-top: 40px; */
@@ -294,20 +297,20 @@ a{
         width: 400px;
     }
     .for_textarea{
-        width: 500px!important;
+        /* width: 500px!important; */
     }
     .second_form_bottom_child {
         width: 100%;
-        margin-left: 8px;
+        margin-left: 5px;
     }
     .for_label_bottom{
         width: 400px;
     }
     .for_textarea_bottom{
-        width: 500px!important;
+        /* width: 500px!important; */
     }
     .ant-input{
-        width: 500px!important;
+        /* width: 500px!important; */
     }
 }
 
@@ -325,10 +328,11 @@ a{
     .ant-select{
         margin-top: 30px;
         margin-left:3%;
-        width: 380px!important;
+        /* width: 380px!important; */
     }
     .for_img{
         /* margin-top: 40px; */
+        justify-content: center!important;
         align-items: center;
         display: flex;
         justify-content: end;
@@ -337,7 +341,7 @@ a{
         /*height: 100vh;*/
     }
     .for_main_img{
-        margin: 40px 20px 55px 0;
+        margin: 40px  0 40px 0;
         width: 300px;
     }
 
@@ -350,11 +354,11 @@ a{
     }
     .for_textarea{
         margin-left:3%;
-        width: 380px!important;
+        /* width: 380px!important; */
     }
     .second_form_bottom_child {
         width: 100%;
-        margin-left: 8px;
+        margin-left: 5px;
     }
     .for_label_bottom{
         margin-left:3%;
@@ -363,11 +367,11 @@ a{
     }
     .for_textarea_bottom{
         margin-left:10%;
-        width: 380px!important;
+        /* width: 380px!important; */
     }
     .ant-input{
         margin-left:1%;
-        width: 380px!important;
+        /* width: 380px!important; */
     }
     .for_button{
         width: 300px;
@@ -387,7 +391,7 @@ a{
     .ant-select{
         margin-top: 30px;
         margin-left:3%;
-        width: 300px!important;
+        /* width: 300px!important; */
     }
     .for_img{
         /* margin-top: 40px; */
@@ -412,7 +416,7 @@ a{
     }
     .for_textarea{
         margin-left:3%;
-        width: 300px!important;
+        /* width: 300px!important; */
     }
     .second_form_bottom_child {
         width: 100%;
@@ -424,11 +428,11 @@ a{
     }
     .for_textarea_bottom{
         margin-left:3%;
-        width: 250px!important;
+        /* width: 250px!important; */
     }
     .ant-input{
         margin-left:3%;
-        width: 300px!important;
+        /* width: 300px!important; */
     }
 }
 
