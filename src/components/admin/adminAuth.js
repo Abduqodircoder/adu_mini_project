@@ -20,29 +20,32 @@ function AdminAuth(props) {
         if (text === ""){} else toast.error(text);
         setText("")
     };
+    
 
     const handleSubmit = e => {
         e.preventDefault();
        if (email.trim().length>0 && password.trim().length>0){
            axios.post(BaseUrl+"/api/login", {email:email, password:password}).then(res=>{
-               console.log(res)
+               console.log(res.data.user.role)
                if (res.status === 201){
                    if(res.data.user.role === 1){
                         localStorage.setItem("token", res.data.token)
                         localStorage.setItem("email", res.data.user.email)
                         localStorage.setItem("password", res.data.user.username)
+                        localStorage.setItem("id", res.data.user.id)
                         navigate("/main_admin_sv_main")
                    }
                    else if(res.data.user.role === 0){
                     localStorage.setItem("token", res.data.token)
                     localStorage.setItem("email", res.data.user.email)
                     localStorage.setItem("password", res.data.user.username)
+                    localStorage.setItem("id", res.data.user.id)
                     navigate("/main_admin_sv_main_super")
                    }
                }
            }).catch(err=>{
-               console.log(err.response.data.message)
-               setText(err.response.data.message)
+               console.log(err)
+            //    setText(err.response.data.message[0])
                if(err.res.status === 500){
                 setText(err.res.status, err.res.statusText)
                }

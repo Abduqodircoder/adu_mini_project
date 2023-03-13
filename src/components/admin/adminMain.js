@@ -74,7 +74,7 @@ function AdminMain(props) {
 
 
     const getNewData = () =>{
-        axios.get(BaseUrl+"/api/taklifs/"+textMenu,{
+        axios.get(BaseUrl+"/api/user/taklifs/" + textMenu +"/"+localStorage.getItem("id"),{
             headers:{
                 "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
             }
@@ -88,7 +88,7 @@ function AdminMain(props) {
 
 
     const getOneData = (id) =>{
-        axios.get(BaseUrl+"/api/taklifs/"+id,{
+        axios.get(BaseUrl+"/api/user/taklifs/"+id,{
             headers:{
                 "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
             }
@@ -107,9 +107,9 @@ function AdminMain(props) {
 
 
     const postStatus = (status) => {
-      axios.post(BaseUrl+"/api/taklifs/check/"+modalDataId.id,{status},{
+      axios.post(BaseUrl+"/api/user/taklifs/check/"+modalDataId.id,{status},{
           headers:{
-              "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
           }
       }).then(res=>{
           console.log(res.status)
@@ -126,10 +126,10 @@ function AdminMain(props) {
 
 
     const deleteData = (id) =>{
-        axios.delete(BaseUrl+"/api/taklifs/"+id,{
+        axios.delete(BaseUrl+"/api/user/taklifs/"+id,{
             headers:{
-                "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
-            }
+                    "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
+                }
         }).then(res=>{
             console.log(res)
             if(res.status === 201){
@@ -173,7 +173,7 @@ function AdminMain(props) {
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         // console.log(Loading items from ${itemOffset} to ${endOffset});
-        setCurrentItems(data.slice(itemOffset, endOffset));
+            setCurrentItems(data && data.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(data.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data]);
 
@@ -201,7 +201,7 @@ function AdminMain(props) {
                         </Menu.Item>
                         {/* <button><a href="http://127.0.0.1:8000/taklifFile/download/31">swefwef</a></button> */}
                        
-                        <Menu.Item onClick={()=>{setTextMenu("fail");setItemOffset(0)}} className="menu-main-item" key="2">
+                        <Menu.Item onClick={()=>{setTextMenu("fails");setItemOffset(0)}} className="menu-main-item" key="2">
                             <div className="in_menu_item">
                             <FormOutlined />
                                 <div className="for_menu_text">Ko'rib chiqilganlar</div>

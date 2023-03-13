@@ -42,13 +42,15 @@ function SuperAdminMAin(props) {
     } = theme.useToken();
 
     const [data, setData] = useState([])
+    const [user, setUser] = useState([])
+    const [user_id, setUser_Id] = useState([])
     const [dataId, setDataId] = useState("")
     const [modalDataId, setModalDataId] = useState([])
     const [textMenu, setTextMenu] = useState("new")
     // const [status, setStatus] = useState("")
     const [text, setText] = useState(false)
 
-    // console.log(dataStatus.typeof)
+    // console.log(user_id)
 
 
    
@@ -80,13 +82,14 @@ function SuperAdminMAin(props) {
 
 
     const getNewData = () =>{
-        axios.get(BaseUrl+"/api/taklifs/"+textMenu,{
+        axios.get(BaseUrl+"/api/admin/taklifs/"+textMenu+"/"+localStorage.getItem("id"),{
             headers:{
                 "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
             }
         }).then(res=>{
-            console.log(res.data.data)
-            setData(res.data.data)
+            console.log(res.data)
+            setData(res.data.taklifs)
+            setUser(res.data.users)
         }).catch(err=>{
             console.log(err, "salom")
         })
@@ -94,7 +97,7 @@ function SuperAdminMAin(props) {
 
 
     const getOneData = (id) =>{
-        axios.get(BaseUrl+"/api/taklifs/"+id,{
+        axios.get(BaseUrl+"/api/admin/taklifs/"+id,{
             headers:{
                 "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
             }
@@ -107,13 +110,13 @@ function SuperAdminMAin(props) {
         })
     }
 
-    // console.log(dataId)
+    console.log(user_id)
 
 
 
 
     const postStatus = (status) => {
-      axios.post(BaseUrl+"/api/taklifs/check/"+modalDataId.id,{status},{
+      axios.post(BaseUrl+"/api/admin/taklifs/toChange/"+modalDataId.id,{status},{
           headers:{
               "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
           }
@@ -130,9 +133,21 @@ function SuperAdminMAin(props) {
       })
     }
 
+    const postTask = () =>{
+        axios.post(BaseUrl +"/api/admin/taklifs/"+modalDataId.id, {user_id},{
+            headers:{
+                "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
+            }
+        }).then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
 
     const deleteData = (id) =>{
-        axios.delete(BaseUrl+"/api/taklifs/"+id,{
+        axios.delete(BaseUrl+"/api/admin/taklifs/"+id,{
             headers:{
                 "Authorization": "Bearer Bearer "+ localStorage.getItem("token")
             }
@@ -153,8 +168,6 @@ function SuperAdminMAin(props) {
         getNewData()
     },[textMenu])
 
-
-
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -167,16 +180,16 @@ function SuperAdminMAin(props) {
         setPageCount(Math.ceil(data.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data]);
 
+    const handleCancel = (status) => {
+        // setIsModalOpen(false);
+        // setStatus(status)
+    }
+    
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % data.length;
         setItemOffset(newOffset);
     };
-{/* <button className="btn btn-primary" onClick={()=>{handleCancel(2); postStatus(2)}}>Ko'rib chiqilganlar</button>
-                        <button className="btn btn-secondary" onClick={()=>{handleCancel(1); postStatus(1)}}>Bajarilganlar</button> */}
-
-                        // <button className="btn btn-danger" onClick={()=>{handleCancel(2); deleteData(modalDataId.id)}}>O'chirish</button>
-
     return (
         <>
             <Layout>
@@ -204,7 +217,7 @@ function SuperAdminMAin(props) {
                         </Menu.Item>
                         {/* <button><a href="http://127.0.0.1:8000/taklifFile/download/31">swefwef</a></button> */}
                        
-                        <Menu.Item onClick={()=>{setTextMenu("fail");setItemOffset(0)}} className="menu-main-item" key="3">
+                        <Menu.Item onClick={()=>{setTextMenu("fails");setItemOffset(0)}} className="menu-main-item" key="3">
                             
                             <Link to="/main_admin_sv_main_super/all/data">
                                 <div className="in_menu_item">
@@ -249,7 +262,7 @@ function SuperAdminMAin(props) {
                             </thead>
                             <tbody>
                             {
-                               currentItems && currentItems.map((item, index)=>(
+                               data &&  data.map((item, index)=>(
                                     <tr onClick={()=>{showLargeDrawer(); getOneData(item.id)}} key={index}>
                                         <th scope="row">{item.id}</th>
                                         <td>{item.category}</td>
@@ -289,17 +302,7 @@ function SuperAdminMAin(props) {
         placement="right"
         size={size}
         onClose={onClose}
-        open={open}
-        // extra={
-        //     <Space>
-        //       <Button onClick={onClose}>Cancel</Button>
-        //       <Button type="primary" onClick={onClose}>
-        //         OK
-        //       </Button>
-        //     </Space>
-        //   }
-       
-      >
+        open={open}>
         <div className="d-flex">
                         <h5>Kategoriya: </h5>
                         <p style={{marginLeft:"8px", borderBottom:"1px solid black",fontSize:"18px"}}>{modalDataId.category}</p>
@@ -322,23 +325,42 @@ function SuperAdminMAin(props) {
                     </div>
                     <div className="d-flex">
                         <h5>File:</h5>
-                        <p style={{marginLeft:"8px", fontSize:"18px"}}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"130px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
+                        <p style={{marginLeft:"8px", fontSize:"18px"}}>{modalDataId.qushimchaFile ? <a href={BaseUrl+"/storage/"+modalDataId.qushimchaFile} target={"_blank"}><button  style={{width:"140px",border:"1px solid green",borderRadius:"10px", outline:"none", color:"green",height:"35px", marginTop:"-10px"}}><CloudDownloadOutlined /> yuklab olish</button></a> : "Qoshimcha file biriktirilmagan"}</p>
                     </div>
-                    <div className="d-flex" style={{justifyContent:"center"}}>
+                    {
+                        modalDataId.status === 0 ? 
+                        <>
+                        <div className="d-flex" style={{justifyContent:"center"}}>
                         <h5>Murojaatni biriktirish</h5>
                     </div>
                     <div className="d-flex" style={{justifyContent:"space-between", width:"100%"}}>
-                        <div  style={{width:"70%"}}>
-                            <select style={{boxShadow:"none"}} className="form-select">
-                                <option value="moliya">Moliya</option>
-                                <option value="moliya">O'quv ishlari</option>
+                        <div  style={{width:"75%"}}>
+                            <select onClick={(e)=>setUser_Id(+e.target.value)} style={{boxShadow:"none"}} className="form-select">
+                                {
+                                    user && user.map((item, index)=>(
+                                        <option key={index} value={item.id}>{item.bulim}</option>
+                                    ))
+                                }
                             </select>
                         </div>
-                        <div style={{width:"15%"}}><button className="btn btn-primary">Biriktirish</button></div>
-                        
-                        <button className="btn btn-danger" onClick={()=>{ deleteData(modalDataId.id)}}>O'chirish</button>
+                        <div style={{width:"15%"}}><button onClick={()=>{postTask()}} className="btn btn-primary">Biriktirish</button></div>
+                        {/* <button className="btn btn-danger" onClick={()=>{ deleteData(modalDataId.id)}}>O'chirish</button> */}
                     </div>
-                    
+                        </> : modalDataId.status === 1 ? <>
+                             <div className="mt-3" style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
+                                <button className="btn btn-danger" onClick={()=>{handleCancel(2); deleteData(modalDataId.id);onClose()}}>O'chirish</button>
+                                <button className="btn btn-primary" onClick={()=>{handleCancel(2); postStatus(2);onClose()}}>Ko'rib chiqilganlar</button>
+                            </div>
+                        </>:modalDataId.status === 2 ? 
+                        <>
+                             <div className="mt-3" style={{width:"100%", display:"flex", justifyContent:"space-between", alignItems:"center",}}>
+                                <button className="btn btn-danger" onClick={()=>{handleCancel(2); deleteData(modalDataId.id);onClose()}}>O'chirish</button>
+                                <button className="btn btn-success" onClick={()=>{handleCancel(1); postStatus(1);onClose()}}>Bajarilganlar</button>
+                            </div>
+                        </>
+                            :<></>
+                        
+                    }                    
       </Drawer>
         </>
     );
