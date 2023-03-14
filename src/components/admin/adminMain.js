@@ -1,5 +1,5 @@
 import {
-    MenuFoldOutlined,
+    BarChartOutlined,
     FormOutlined,
     FileExcelOutlined,
     FileDoneOutlined,
@@ -9,12 +9,13 @@ import {
 } from '@ant-design/icons';
 import React, {useEffect, useRef, useState} from 'react';
 import { Layout, Menu, theme, Modal } from 'antd';
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, Route, Routes} from "react-router-dom";
 import {BaseUrl} from "../../BaseUrl";
 import axios from "axios";
 import ReactPaginate from "react-paginate"
 import {ToastContainer, toast} from 'react-toastify';
 import Base from 'antd/es/typography/Base';
+import Chart2 from './chart2';
 const { Header, Sider, Content, Button, Input, Space, Table, } = Layout;
 
 
@@ -193,25 +194,37 @@ function AdminMain(props) {
                         <img className="img-for-logo" src="https://yt3.ggpht.com/a/AATXAJxvHU_V9ATaE-t_2rnF1-O8Kn6CLe1wAt_--w=s900-c-k-c0xffffffff-no-rj-mo" alt=""/>
                     </div>
                     <Menu className="big_menu" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="1">
+                    <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="1">
+                            <Link to="/main_admin_sv_main/">
+                                <div className="in_menu_item">
+                                <BarChartOutlined />
+                                    <div className="for_menu_text">Statistika</div>
+                                </div>
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="2">
+                            <Link to="/main_admin_sv_main/statistic">
                             <div className="in_menu_item">
                                 <HomeOutlined/>
                                 <div className="for_menu_text">Yangi arizlar</div>
                             </div>
+                            </Link>
                         </Menu.Item>
-                        {/* <button><a href="http://127.0.0.1:8000/taklifFile/download/31">swefwef</a></button> */}
-                       
-                        <Menu.Item onClick={()=>{setTextMenu("fails");setItemOffset(0)}} className="menu-main-item" key="2">
-                            <div className="in_menu_item">
+                        <Menu.Item onClick={()=>{setTextMenu("fails");setItemOffset(0)}} className="menu-main-item" key="3">
+                        <Link to="/main_admin_sv_main/statistic">
+                        <div className="in_menu_item">
                             <FormOutlined />
                                 <div className="for_menu_text">Ko'rib chiqilganlar</div>
                             </div>
+                        </Link>
                         </Menu.Item>
-                        <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="3">
-                            <div className="in_menu_item">
+                        <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="4">
+                        <Link to="/main_admin_sv_main/statistic">
+                        <div className="in_menu_item">
                                 <FileDoneOutlined />
                                 <div className="for_menu_text">Bajarilgan murojaatlar</div>
                             </div>  
+                        </Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -224,7 +237,11 @@ function AdminMain(props) {
                        </div>
                     </Header>
                     <Content style={{margin: '24px 16px', padding: 24, minHeight: "81.5vh", background: colorBgContainer,}}>
-                        <table className="table table-hover">
+                       {
+                        <Routes>
+                            <Route path="/" element={<Chart2/>}/>
+                            <Route path="/statistic" element={<>
+                                <table className="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">TR</th>
@@ -266,6 +283,9 @@ function AdminMain(props) {
                     activeLinkClassName="active"
                 />
             </div>
+                            </>}/>
+                        </Routes>
+                       }
                     </Content>
                 </Layout>
                 

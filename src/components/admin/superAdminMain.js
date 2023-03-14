@@ -140,6 +140,10 @@ function SuperAdminMAin(props) {
             }
         }).then(res=>{
             console.log(res)
+            if(res.status === 200){
+                setText("Ma'lumot muaffaqiyatli biriktirildi")
+                getNewData()
+            }
         }).catch(err=>{
             console.log(err)
         })
@@ -343,7 +347,7 @@ function SuperAdminMAin(props) {
                                 }
                             </select>
                         </div>
-                        <div style={{width:"15%"}}><button onClick={()=>{postTask()}} className="btn btn-primary">Biriktirish</button></div>
+                        <div style={{width:"15%"}}><button onClick={()=>{postTask();onClose()}} className="btn btn-primary">Biriktirish</button></div>
                         {/* <button className="btn btn-danger" onClick={()=>{ deleteData(modalDataId.id)}}>O'chirish</button> */}
                     </div>
                         </> : modalDataId.status === 1 ? <>

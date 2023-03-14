@@ -27,6 +27,7 @@ function AdminAuth(props) {
        if (email.trim().length>0 && password.trim().length>0){
            axios.post(BaseUrl+"/api/login", {email:email, password:password}).then(res=>{
                console.log(res.data.user.role)
+               console.log(res.data.user)
                if (res.status === 201){
                    if(res.data.user.role === 1){
                         localStorage.setItem("token", res.data.token)
