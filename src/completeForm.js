@@ -95,9 +95,7 @@ function CompleteForm(props) {
         if (
           category.trim().length > 0 &&
           muammo.trim().length > 0 &&
-          muammo_natija.trim().length > 0 &&
-          muallif.trim().length > 0 &&
-          muallif_info.trim().length > 0
+          muammo_natija.trim().length > 0
         ) {
           const taklifs = new FormData();
           taklifs.append("category", category);
@@ -140,7 +138,7 @@ function CompleteForm(props) {
                 <div data-aos="zoom-in-right">
                     <label className="for_label" htmlFor="">Yuborayotgan Taklif, tashabbus yoki mavjud muammoyingiz qaysi sohaga tegishli?</label>
                     <div>
-                        <input placeholder="(Namuna) Karrupsiya, O'quv ishlari, Moddiy-texnik..." value={category} style={{boxShadow:"none"}} className="form-control" type="text" onChange={(e)=>{setCategory(e.target.value)}}/>
+                        <input placeholder="(Namuna) Korrupsiya, O'quv ishlari, Moddiy-texnik..." value={category} style={{boxShadow:"none"}} className="form-control" type="text" onChange={(e)=>{setCategory(e.target.value)}}/>
                     </div>
                 </div>
                 <div data-aos="zoom-in-right" className="mt-5">

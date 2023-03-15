@@ -206,7 +206,7 @@ function AdminMain(props) {
                             <Link to="/main_admin_sv_main/statistic">
                             <div className="in_menu_item">
                                 <HomeOutlined/>
-                                <div className="for_menu_text">Yangi arizlar</div>
+                                <div className="for_menu_text">Yangi arizalar</div>
                             </div>
                             </Link>
                         </Menu.Item>
@@ -268,21 +268,21 @@ function AdminMain(props) {
                             </tbody>
                         </table>
                         <div className="my-pagination">
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel=" >"
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={2}
-                    pageCount={pageCount}
-                    previousLabel="<"
-                    renderOnZeroPageCount={null}
-                    containerClassName="pagination"
-                    pageLinkClassName="page-num"
-                    previousLinkClassName="page-num"
-                    nextLinkClassName="page-num"
-                    activeLinkClassName="active"
-                />
-            </div>
+                            <ReactPaginate
+                                breakLabel="..."
+                                nextLabel=" >"
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={2}
+                                pageCount={pageCount}
+                                previousLabel="<"
+                                renderOnZeroPageCount={null}
+                                containerClassName="pagination"
+                                pageLinkClassName="page-num"
+                                previousLinkClassName="page-num"
+                                nextLinkClassName="page-num"
+                                activeLinkClassName="active"
+                            />
+                         </div>
                             </>}/>
                         </Routes>
                        }

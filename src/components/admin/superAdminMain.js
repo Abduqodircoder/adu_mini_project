@@ -215,7 +215,7 @@ function SuperAdminMAin(props) {
                             <Link to="/main_admin_sv_main_super/all/data">
                                 <div className="in_menu_item">
                                 <FileTextOutlined />
-                                    <div className="for_menu_text">Yangi arizlar</div>
+                                    <div className="for_menu_text">Yangi arizalar</div>
                                 </div>
                             </Link>
                         </Menu.Item>
@@ -232,6 +232,14 @@ function SuperAdminMAin(props) {
                             
                         </Menu.Item>
                         <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="4">
+                        <Link to="/main_admin_sv_main_super/all/data">
+                        <div className="in_menu_item">
+                                <FileDoneOutlined />
+                                <div className="for_menu_text">Bajarilgan murojaatlar</div>
+                            </div>  
+                        </Link>
+                        </Menu.Item>
+                        <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="5">
                         <Link to="/main_admin_sv_main_super/all/data">
                         <div className="in_menu_item">
                                 <FileDoneOutlined />

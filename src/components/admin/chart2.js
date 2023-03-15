@@ -80,7 +80,7 @@ const Chart2 = () =>{
     return(
        <div className="container" style={{}}>
         <div className="row">
-          <div className="col-12 shadow" style={{fontSize:"25px", fontWeight:"bold", height:"50px", display:"flex", alignItems:"center", justifyContent:"center"}}>Andijon Davlat Universiteti Murojaatlari</div>
+          <div className="col-12 shadow" style={{fontSize:"25px", fontWeight:"bold", height:"50px", display:"flex", alignItems:"center", justifyContent:"center"}}>Andijon davlat universiteti murojaatlari</div>
         </div>
          <div className="row mt-5" style={{display:"flex", justifyContent:"space-between"}}>
            <div style={{borderRadius:"8px",padding:"10"}} className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 shadow">
