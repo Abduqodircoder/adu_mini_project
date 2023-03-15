@@ -193,6 +193,9 @@ function AdminMain(props) {
                     <div className="logo_main_page">
                         <img className="img-for-logo" src="https://yt3.ggpht.com/a/AATXAJxvHU_V9ATaE-t_2rnF1-O8Kn6CLe1wAt_--w=s900-c-k-c0xffffffff-no-rj-mo" alt=""/>
                     </div>
+                    <div className="mt-2" style={{textAlign:"center", width:"90%"}}>
+                        <p style={{color:"white"}}>{localStorage.getItem("username")}</p>
+                    </div>
                     <Menu className="big_menu" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="1">
                             <Link to="/main_admin_sv_main/">
@@ -229,8 +232,10 @@ function AdminMain(props) {
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header style={{padding: "0 30px 0 0", background: "dark", display:"flex", justifyContent:"end", alignItems:"center"}}>
-                        
+                    <Header style={{padding: "0 30px 0 0", background: "dark", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+                    <div  className="log_out d-flex align-items-center">
+                           <p style={{color:"white", margin:"10px 5px"}}>{localStorage.getItem("bulim")}</p>
+                       </div>
                        <div style={{cursor:"pointer"}} onClick={logOut} className="log_out d-flex align-items-center">
                            <p style={{color:"white", margin:"10px 5px"}}>Chiqish</p>
                            <LogoutOutlined />

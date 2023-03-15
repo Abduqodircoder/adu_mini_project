@@ -16,6 +16,7 @@ import ReactPaginate from "react-paginate"
 import {ToastContainer, toast} from 'react-toastify';
 import Base from 'antd/es/typography/Base';
 import ChartS from './chartS';
+import User from './User';
 const { Header, Sider, Content, } = Layout;
 
 
@@ -202,6 +203,9 @@ function SuperAdminMAin(props) {
                     <div className="logo_main_page">
                         <img className="img-for-logo" src="https://yt3.ggpht.com/a/AATXAJxvHU_V9ATaE-t_2rnF1-O8Kn6CLe1wAt_--w=s900-c-k-c0xffffffff-no-rj-mo" alt=""/>
                     </div>
+                    <div className="mt-2" style={{ textAlign:"center", width:"90%"}}>
+                        <p style={{color:"white"}}>{localStorage.getItem("username")}</p>
+                    </div>
                     <Menu className="big_menu" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item onClick={()=>setTextMenu("new")} className="menu-main-item" key="1">
                             <Link to="/main_admin_sv_main_super/">
@@ -235,23 +239,25 @@ function SuperAdminMAin(props) {
                         <Link to="/main_admin_sv_main_super/all/data">
                         <div className="in_menu_item">
                                 <FileDoneOutlined />
-                                <div className="for_menu_text">Bajarilgan murojaatlar</div>
+                                <div className="for_menu_text">Bajarilganlar</div>
                             </div>  
                         </Link>
                         </Menu.Item>
                         <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="5">
-                        <Link to="/main_admin_sv_main_super/all/data">
+                        <Link to="/main_admin_sv_main_super/user">
                         <div className="in_menu_item">
                                 <FileDoneOutlined />
-                                <div className="for_menu_text">Bajarilgan murojaatlar</div>
+                                <div className="for_menu_text">Foydalanuvchilar</div>
                             </div>  
                         </Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header style={{padding: "0 30px 0 0", background: "dark", display:"flex", justifyContent:"end", alignItems:"center"}}>
-                        
+                    <Header style={{padding: "0 30px 0 0", background: "dark", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+                    <div  className="log_out d-flex align-items-center">
+                           <p style={{color:"white", margin:"10px 5px"}}>Tizim admistratori</p>
+                       </div>
                        <div style={{cursor:"pointer"}} onClick={logOut} className="log_out d-flex align-items-center">
                            <p style={{color:"white", margin:"10px 5px"}}>Chiqish</p>
                            <LogoutOutlined />
@@ -303,6 +309,7 @@ function SuperAdminMAin(props) {
                             />
                         </div>
                             </>}/>
+                            <Route path="/user" element={<User/>}/>
                         </Routes>
                        }
                     </Content>

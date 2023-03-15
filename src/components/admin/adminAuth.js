@@ -32,23 +32,28 @@ function AdminAuth(props) {
                    if(res.data.user.role === 1){
                         localStorage.setItem("token", res.data.token)
                         localStorage.setItem("email", res.data.user.email)
-                        localStorage.setItem("password", res.data.user.username)
+                        localStorage.setItem("username", res.data.user.username)
                         localStorage.setItem("id", res.data.user.id)
+                        localStorage.setItem("bulim", res.data.user.bulim)
                         navigate("/main_admin_sv_main")
                    }
                    else if(res.data.user.role === 0){
                     localStorage.setItem("token", res.data.token)
                     localStorage.setItem("email", res.data.user.email)
-                    localStorage.setItem("password", res.data.user.username)
+                    localStorage.setItem("username", res.data.user.username)
                     localStorage.setItem("id", res.data.user.id)
+                    localStorage.setItem("bulim", res.data.user.bulim)
                     navigate("/main_admin_sv_main_super")
                    }
                }
            }).catch(err=>{
-               console.log(err)
+               console.log(err.response.status)
             //    setText(err.response.data.message[0])
-               if(err.res.status === 500){
-                setText(err.res.status, err.res.statusText)
+               if(err.response.status === 500){
+                setText(err.response.status, err.response.statusText)
+               }
+               if(err.response.status === 400){
+                setText( err.response.data.message[0])
                }
            })
        }else {
