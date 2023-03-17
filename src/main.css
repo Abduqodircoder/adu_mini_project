@@ -313,7 +313,13 @@ a{
 }
 
 @media (min-width:412px) and (max-width:576px){
-
+    .main_second_width{
+        padding:0 15px !important;
+        position: relative !important;
+    }
+    .d-block{
+        position: relative !important;
+    }
     .for_big_width{
         display: none;
     }
@@ -376,7 +382,13 @@ a{
     }
 }
 @media (min-width:280px) and (max-width:411px){
-
+    .main_second_width{
+        padding:0 15px !important;
+        position: relative !important;
+    }
+    .d-block{
+        position: relative !important;
+    }
     .for_big_width{
         display: none;
     }
@@ -421,7 +433,7 @@ a{
         margin-left: 5px;
     }
     .for_label_bottom{
-        margin-left:3%;
+        /* margin-left:3%; */
         width: 300px;
     }
     .for_textarea_bottom{

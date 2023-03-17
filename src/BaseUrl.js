@@ -1,3 +1,3 @@
-const BaseUrl = "http://127.0.0.1:8000"
+const BaseUrl = "http://taklif.adu.uz"
 
 export {BaseUrl}

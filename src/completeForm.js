@@ -132,7 +132,7 @@ function CompleteForm(props) {
 
     return (
         <>
-            <div>
+            <div className="main_second_width">
                 <ToastContainer />
                 {/*{JSON.stringify({muammo, muammo_yechimi, muammo_natija, muallif, muallif_info})}*/}
                 <div data-aos="zoom-in-right">
@@ -156,7 +156,7 @@ function CompleteForm(props) {
                 </div>
             </div>
             <div className="d-block">
-                <div className="second_form_bottom_child">
+                <div className="second_form_bottom_child" style={{padding:"0 20px"}}>
                     <div data-aos="zoom-in-right" className="mt-5">
                         <label className="for_label_bottom" htmlFor="">Ism va familiyangiz</label>
                         <div><input style={{boxShadow:"none"}} className="form-control " type="text" value={muallif} onChange={(e) => setMuallif(e.target.value)} /></div>

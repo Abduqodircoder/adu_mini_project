@@ -3,7 +3,7 @@ import {
     FormOutlined,
     FileTextOutlined,
     FileDoneOutlined,
-    HomeOutlined,
+    UserOutlined,
     LogoutOutlined,
     CloudDownloadOutlined
 } from '@ant-design/icons';
@@ -246,7 +246,7 @@ function SuperAdminMAin(props) {
                         <Menu.Item onClick={()=>{setTextMenu("done");setItemOffset(0)}} className="menu-main-item" key="5">
                         <Link to="/main_admin_sv_main_super/user">
                         <div className="in_menu_item">
-                                <FileDoneOutlined />
+                                <UserOutlined />
                                 <div className="for_menu_text">Foydalanuvchilar</div>
                             </div>  
                         </Link>
