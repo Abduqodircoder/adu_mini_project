@@ -18,7 +18,7 @@ function Main(props) {
         <div className="container">
             <div className="row">
                 <div data-aos="fade-down" className="first_name">
-                    Andijon Davlat Universiteti
+                    Andijon davlat universiteti
                 </div>
                 <div data-aos="zoom-in" className="second_name">
                     OLIY TAʼLIM VA UNING SIFATINI TAʼMINLASH, OLIY TA'LIM TIZIMIGA OID TAKLIF, 
