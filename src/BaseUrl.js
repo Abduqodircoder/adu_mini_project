@@ -1,3 +1,3 @@
-const BaseUrl = "http://taklif.adu.uz"
+const BaseUrl = "http://taklifapi.adu.uz"
 
 export {BaseUrl}
